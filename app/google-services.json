@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "355976115173",
+    "project_id": "digitclassifier-b8c50",
+    "storage_bucket": "digitclassifier-b8c50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355976115173:android:8c5c5a7bb9bc266f71f50c",
+        "android_client_info": {
+          "package_name": "org.tensorflow.lite.examples.digitclassifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355976115173-8lr2qjinhseuf6mtcv7ndt7qq21m86k9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH6tn9sXo6h7EiWpaqqqSAyV8TLZlNq7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355976115173-8lr2qjinhseuf6mtcv7ndt7qq21m86k9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
