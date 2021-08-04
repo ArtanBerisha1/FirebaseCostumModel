@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun setupDigitClassifier() {
-    downloadModel("mnist_v1")
+    downloadModel("model")
   }
 
   private fun downloadModel(modelName: String): Task<Void> {
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
             if (model == null) {
               showToast("Failed to get model file.")
             } else {
-              showToast("Downloaded remote model: $model")
+              showToast("Downloaded remote model successfully")
               digitClassifier.initialize(model)
             }
           }
