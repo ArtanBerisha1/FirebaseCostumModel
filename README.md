@@ -1,36 +1,4 @@
 # Digit Classifier Android sample
+-This is part of the Google Codelabs example "Add Firebase to your TFLite-powered Android App" (https://firebase.google.com/codelabs/digitclassifier-android?hl=en&continue=https%3A%2F%2Fcodelabs.developers.google.com%2F%3Fauthuser%3D1#0)
 
-<img src="https://storage.googleapis.com/khanhlvg-public.appspot.com/digit-classifier/screenshot_android.png" />
-
-## Requirements
-
-*  Android Studio 3.2 (installed on a Linux, Mac or Windows machine)
-*  An Android device, or an Android Emulator
-
-## Build and run
-
-### Step 1. Clone the TensorFlow examples source code
-
-Clone the TensorFlow examples GitHub repository to your computer to get the
-demo application.
-
-```
-git clone https://github.com/tensorflow/examples
-```
-
-### Step 2. Import the sample app to Android Studio
-
-Open the TensorFlow source code in Android Studio. To do this, open Android
-Studio and select `Import Projects (Gradle, Eclipse ADT, etc.)`, setting the
-folder to `examples/lite/examples/digit_classifier/android`
-
-
-### Step 3. Run the Android app
-
-Connect the Android device to the computer and be sure to approve any ADB
-permission prompts that appear on your phone. Select `Run -> Run app.` Select
-the deployment target in the connected devices to the device on which the app
-will be installed. This will install the app on the device.
-
-To test the app, open the app called `Digit Classifier` on your device.
-Re-installing the app may require you to uninstall the previous installations.
+I created my Firebase Console and new project with it according to the codelab steps, one thing that I missed and was confusing was to check the name of the model that I was uploading to Firebase with the name that was passed as parameter to downloadModel() method.
