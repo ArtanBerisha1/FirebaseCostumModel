@@ -26,9 +26,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.divyanshu.draw.widget.DrawView
 import com.google.android.gms.tasks.Task
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel
+import com.google.firebase.perf.FirebasePerformance
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -42,6 +45,9 @@ class MainActivity : AppCompatActivity() {
   private var yesButton: Button? = null
   private var predictedTextView: TextView? = null
   private var digitClassifier = DigitClassifier(this)
+
+  private val firebasePerformance = FirebasePerformance.getInstance()
+
 
   @SuppressLint("ClickableViewAccessibility")
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +82,11 @@ class MainActivity : AppCompatActivity() {
 
       true
     }
+
+    yesButton?.setOnClickListener {
+      Firebase.analytics.logEvent("correct_inference", null)
+    }
+
     setupDigitClassifier()
   }
 
@@ -88,10 +99,14 @@ class MainActivity : AppCompatActivity() {
     val bitmap = drawView?.getBitmap()
 
     if ((bitmap != null) && (digitClassifier.isInitialized)) {
+      val classifyTrace = firebasePerformance.newTrace("classify")
+      classifyTrace.start()
       digitClassifier
         .classifyAsync(bitmap)
         .addOnSuccessListener { resultText ->
           predictedTextView?.text = resultText
+          classifyTrace.stop()
+
         }
         .addOnFailureListener { e ->
           predictedTextView?.text = getString(
@@ -114,7 +129,12 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun setupDigitClassifier() {
+    val downloadTrace = firebasePerformance.newTrace("download_model")
+    downloadTrace.start()
     downloadModel("model")
+      .addOnSuccessListener {
+        downloadTrace.stop()
+      }
   }
 
   private fun downloadModel(modelName: String): Task<Void> {

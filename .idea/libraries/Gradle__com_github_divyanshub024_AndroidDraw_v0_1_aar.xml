@@ -4,6 +4,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ed019e039ca82b0327331197da752193/jetified-AndroidDraw-v0.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ed019e039ca82b0327331197da752193/jetified-AndroidDraw-v0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ed019e039ca82b0327331197da752193/jetified-AndroidDraw-v0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ba02a879ada65756402347eb8d9689c/jetified-AndroidDraw-v0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ba02a879ada65756402347eb8d9689c/jetified-AndroidDraw-v0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ba02a879ada65756402347eb8d9689c/jetified-AndroidDraw-v0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a723f5f42a0ede31a8dd4a27c5f3337f/jetified-AndroidDraw-v0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a723f5f42a0ede31a8dd4a27c5f3337f/jetified-AndroidDraw-v0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a723f5f42a0ede31a8dd4a27c5f3337f/jetified-AndroidDraw-v0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
