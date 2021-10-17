@@ -32,6 +32,9 @@ import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditio
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel
 import com.google.firebase.perf.FirebasePerformance
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
   private var yesButton: Button? = null
   private var predictedTextView: TextView? = null
   private var digitClassifier = DigitClassifier(this)
+  private lateinit var remoteConfig: FirebaseRemoteConfig
 
   private val firebasePerformance = FirebasePerformance.getInstance()
 
@@ -129,11 +133,21 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun setupDigitClassifier() {
-    val downloadTrace = firebasePerformance.newTrace("download_model")
-    downloadTrace.start()
-    downloadModel("model")
-      .addOnSuccessListener {
-        downloadTrace.stop()
+    configureRemoteConfig()
+    remoteConfig.fetchAndActivate()
+      .addOnCompleteListener { task ->
+        if (task.isSuccessful) {
+          val modelName = remoteConfig.getString("model_name")
+          Log.d("artantest", "$modelName")
+          val downloadTrace = firebasePerformance.newTrace("download_model")
+          downloadTrace.start()
+          downloadModel(modelName!!)
+            .addOnSuccessListener {
+              downloadTrace.stop()
+            }
+        } else {
+          showToast("Failed to fetch model name.")
+        }
       }
   }
 
@@ -170,6 +184,14 @@ class MainActivity : AppCompatActivity() {
         Log.e(TAG, it.message, it)
         showToast("Model download failed for digit classifier, please check your connection.")
       }
+  }
+
+  private fun configureRemoteConfig() {
+    remoteConfig = Firebase.remoteConfig
+    val configSettings = remoteConfigSettings {
+      minimumFetchIntervalInSeconds = 3600
+    }
+    remoteConfig.setConfigSettingsAsync(configSettings)
   }
 
   private fun showToast(text: String) {
